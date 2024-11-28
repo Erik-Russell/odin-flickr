@@ -1,0 +1,12 @@
+<%# @flickr %>
+
+<%= form_with url: static_pages_path, method: :get, local: true do |form| %>
+  <%= form.label :user_id, "Show User Public Pictures" %>
+  <%= form.text_field :user_id, placeholder: "Enter User ID" %>
+  <%= form.submit "Show Pictures"%>
+<% end %>
+<% if @user_id %>
+  <% @photos.each do |photo| %>
+    <img src="https://live.staticflickr.com/<%= photo['server'] %>/<%= photo['id'] %>_<%= photo['secret'] %>_w.jpg" alt="">
+  <% end %>
+<% end %>
